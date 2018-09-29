@@ -15,5 +15,5 @@ if __name__ == '__main__':
         print("-----------Generating....-----------")
         getExercise(args.range_arg, args.num_arg)
         print("------------Generated.--------------")
-	print('--------------------------------')
-	print('Thank you for using it!Bye,have a great time!')
+    print('--------------------------------')
+    print('Thank you for using it!Bye,have a great time!')

@@ -4,7 +4,7 @@ import argparse
 from random import choice
 from random import randint
 from fractions import Fraction
-from Suffix import suffix, evaluate
+from Arithmetic import suffix, evaluate
 
 def getOperator():
     # 取计算符

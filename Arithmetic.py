@@ -46,6 +46,8 @@ def evaluate(ex):
             num2 = result_stack.pop()
             num1 = result_stack.pop()
             re = arithmetic(num2, num1, element)
+            if re < 0 or re == False:
+                return False
             result_stack.append(re)
         else:
             if element.find('/') > 0:  
@@ -84,8 +86,10 @@ def arithmetic(x, y, op):
         return x - y
     if op == '*':
         return x * y
-    if op == '÷':
+    if op == '÷' and y > 0:
         return x / y
+    else:
+        return False
 
 if __name__ == '__main__':
     #测试函数
