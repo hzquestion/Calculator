@@ -2,19 +2,36 @@
 
 import argparse
 from Generator import getExercise
+from Fetch_Proofread import Proofread
 
 if __name__ == '__main__':
     # 主函数
-    print('Calculator starts working...')
+    print('Generator_Calculator starts working...')
     print('------------------------------------')
-    parser = argparse.ArgumentParser(description="This is a Caculate.")
+    parser = argparse.ArgumentParser(description="This is a Generator_Calculator.")
     parser.add_argument("-n", metavar="--number", type=int, dest="num_arg", help="The numbers of questions.")
     parser.add_argument("-r", metavar="--range", type=int, dest="range_arg", help="The range of random numbers.")
+    parser.add_argument("-e", metavar='--exercise file', dest="exercisefile_arg", help="Given the exercise file.")
+    parser.add_argument("-a", metavar="--answer file", dest="answerfile_arg", help="Given the answer file.")
     args = parser.parse_args()
-    if args.num_arg and args.range_arg:
-        print("-----------Generating....-----------")
-        getExercise(args.range_arg, args.num_arg)
-        print("------------Generated.--------------")
+    if args.num_arg:
+        if args.range_arg:
+            print("-----------Generating....-----------")
+            getExercise(args.range_arg, args.num_arg)
+            print("-----------Generated.---------------")
+        else:
+            print('ERROR:Please give the numerical range.')
+            exit(0)
+
+    if args.exercisefile_arg:
+        if args.answerfile_arg:
+            print("-----------Calculating...-----------")
+            Proofread(args.exercisefile_arg, args.answerfile_arg)
+            print("-----------Calculated.--------------")
+        else:
+            print('ERROR:Please check that the path is correct and that the answerfile exists.')
+            exit(0)
+
     print('------------------------------------')
     print('Thank you for using it!')
     print('Bye,have a great time!')
