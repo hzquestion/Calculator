@@ -22,6 +22,10 @@ if __name__ == '__main__':
         else:
             print('ERROR:Please give the numerical range.')
             exit(0)
+    elif args.range_arg and args.num_arg is None:
+        print("-----------Generating....-----------")
+        getExercise(args.range_arg, 10)
+        print("-----------Generated.---------------")
 
     if args.exercisefile_arg:
         if args.answerfile_arg:

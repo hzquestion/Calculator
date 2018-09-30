@@ -30,11 +30,11 @@ def getFraction(ran):
     :param ran: 分数的最大范围
     :return: 分数操作数str
     """
-    denominator = randint(2, ran)
-    numerator = randint(1, denominator - 1)
-    fraction_int = randint(0, ran - 1)
+    denominator = randint(2, ran)  # 取分母，范围为（2~range）
+    numerator = randint(1, denominator - 1)  # 取分子，范围为（1~分母-1）
+    fraction_int = randint(0, ran - 1)  # 取带分数的整数部分，范围同整数
     fra = str(Fraction(numerator, denominator))
-    if fraction_int > 0:
+    if fraction_int > 0:  # 若带分数整数大于零，则加入该整数
         fra = str(fraction_int) + "'" + fra
     return fra
 
@@ -78,16 +78,16 @@ def getExercise(ran, frequency):
     answ = open("./Answer.txt", "w+")
     fre = 1
     while fre <= frequency:
-        if randint(0, 2):
+        if randint(0, 2):  # 第一个数随机取整数或分数
             ex = [getNumber(ran)]
         else:
             ex = [getFraction(ran)]
-        n = randint(1, 3)
+        n = randint(1, 3)  # 随机取操作符的个数
         num_op = n
         while n > 0:
-            ex.append(getOperator())
+            ex.append(getOperator())  # 随机取操作符，并加入队列
             if randint(0, 1):
-                if ex[-1] == '÷':
+                if ex[-1] == '÷':  # 若操作符为除号，则取大于零的数
                     ex.append(getNumber(ran - 1) + 1)
                 else:
                     ex.append(getNumber(ran))
@@ -98,15 +98,15 @@ def getExercise(ran, frequency):
             getBrackets(ex, num_op)
 
         result = evaluate(suffix(ex))
-        if result:
+        if result:  # 输出并写入文件
             print(fre, ".", result, file=answ)
-            print(fre, ".", result)
+            #print(fre, ".", result)
             print(fre, ".", end=' ', file=data)
-            print(fre, ".", end=' ')
+            #print(fre, ".", end=' ')
             for i in ex:
-                print(i, end=' ')
+                #print(i, end=' ')
                 print(i, end=' ', file=data)
-            print('= ')
+            #print('= ')
             print('= ', file=data)
         else:
             fre = fre - 1

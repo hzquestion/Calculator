@@ -29,9 +29,9 @@ def Proofread(file_exercise, file_answer):
                     wrong_list.append(num)
                 num = num + 1
             print('Correct:', correct_num, tuple(correct_list), file=Grade)
-            print('Correct:', correct_num, tuple(correct_list))
+            #print('Correct:', correct_num, tuple(correct_list))
             print('Wrong:', wrong_num, tuple(wrong_list), file=Grade)
-            print('Wrong:', wrong_num, tuple(wrong_list))
+            #print('Wrong:', wrong_num, tuple(wrong_list))
     except IOError:
         print('ERROR:Please check that the path is correct and that the file exists.')
 

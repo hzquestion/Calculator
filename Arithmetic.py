@@ -5,28 +5,28 @@ from fractions import Fraction
 
 def suffix(ex):
     """
-    中缀表达式转后缀表达式
+    中缀表达式转后缀表达式（调度场算法）
     :param ex: 中缀表达式
     :return: 后缀表达式 suffix_exp[]
     """
     op_weight = {'+': 1, '-': 1, '*': 2, '÷': 2}
     suffix_exp = []  # 后缀表达式存储栈
     op_stack = []  # 运算符栈
-    infix_exp = [str(x) for x in ex]
+    infix_exp = [str(x) for x in ex]  # 将中缀表达式的所有元素类型转为str
     for element in infix_exp:
-        if element in ['+', '-', '*', '÷']:
+        if element in ['+', '-', '*', '÷']:  # 表达式取出的元素为运算符
             while len(op_stack) >= 0:
-                if len(op_stack) == 0:
+                if len(op_stack) == 0:  # 若运算符栈为空，则运算符直接入栈
                     op_stack.append(element)
                     break
-                op = op_stack.pop()
+                op = op_stack.pop()  # 取栈顶元素
                 if op == '(' or op_weight[element] > op_weight[op]:
-				# 若栈顶元素为左括号，或栈顶元素的优先级低于所取运算符，则将栈顶元素返回，并将运算符入栈
+                    # 若栈顶元素为左括号，或栈顶元素的优先级低于所取运算符，则将栈顶元素返回，并将运算符入栈
                     op_stack.append(op)
                     op_stack.append(element)
                     break
                 else:
-                    suffix_exp.append(op)
+                    suffix_exp.append(op)  # 若栈顶元素优先级高于所取运算符，则将栈顶元素压入表达式栈
         elif element == '(':  # 若所取为左括号，则直接入运算符栈
             op_stack.append(element)
         elif element == ')':  # 若所取为右括号，则栈顶元素依次出栈，压入表达式栈，直到遇到左括号
@@ -37,17 +37,17 @@ def suffix(ex):
                 else:
                     suffix_exp.append(op)
         else:
-            suffix_exp.append(element)
+            suffix_exp.append(element)  # 数值入表达式栈
 
     while len(op_stack) > 0:
-        suffix_exp.append(op_stack.pop())
+        suffix_exp.append(op_stack.pop())  # 将运算符栈剩下的元素依次压入表达式栈
 
     return suffix_exp
 
 
 def evaluate(ex):
     """
-    后缀表达式求值函数（逆波兰算法）
+    后缀表达式求值函数（逆波兰表达式求值算法）
     :param ex: 后缀表达式
     :return: 运算结果 int、str、分数
     """
@@ -76,7 +76,7 @@ def evaluate(ex):
                 res = Fraction(nume, deno)
                 result_stack.append(res)
             else:
-                result_stack.append(Fraction(int(element), 1))
+                result_stack.append(Fraction(int(element), 1))  # 整数直接入结果栈
 
     if str(result_stack[0]).find('/') > 0:  # 若结果为假分数，将其转化为字符型的带分数
         if result_stack[0] > 1:
