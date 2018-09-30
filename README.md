@@ -1,10 +1,11 @@
-# Calculator
+# Generator_Calculator
 
 ## 概述
 实现一个自动生成小学四则运算题目的命令行程序。
 
 ## 处理模式
-    python main.py [parameter] [parameter]
+    python main.py -n [parameter] -r [parameter]
+    python main.py -e [parameter] -a [parameter]
 
 ## 说明
 - 自然数：0, 1, 2, …。
@@ -46,7 +47,7 @@ e = n | e1 + e2 | e1 − e2 | e1 × e2 | e1 ÷ e2 | (e),
 8. 程序应能支持一万道题目的生成。
 9. 程序支持对给定的题目文件和答案文件，判定答案中的对错并进行数量统计，输入参数如下：
  
-Myapp.exe -e <exercisefile>.txt -a <answerfile>.txt
+    main.py -e <exercisefile>.txt -a <answerfile>.txt
  
 统计结果输出到文件Grade.txt，格式如下：
  
